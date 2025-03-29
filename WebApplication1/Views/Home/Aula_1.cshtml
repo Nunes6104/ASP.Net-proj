@@ -1,0 +1,32 @@
+﻿@model WebApplication1.Models.Aluno
+
+@{
+    ViewBag.Title = "Aula_1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Aula_1:</h1>
+<h3 class="text-danger">Escola: @ViewBag.escola</h3>
+<h5>Turma: @ViewData["turma"]</h5>
+<h5>Disciplina: @TempData.Peek("disciplina")</h5>
+<fieldset>
+    <legend>Aluno</legend>
+    Num: @Model.Num<br />
+    Nome: @Model.Nome<br />
+    Turma: @Model.Turma<br />
+</fieldset>
+
+<div class="form-group">
+    <h3>Cálculo do Dobro de um número</h3>
+    @using (Html.BeginForm("Aula_1", "Home", FormMethod.Post, new { id = "frm" }))
+    {
+        <label>Num: </label>
+        @Html.TextBox("txtnum", "", new { @class = "form-control" })
+        <label>Resultado: </label>
+        @Html.TextBox("txtdobro", ViewBag.dobro as String, new { @class = "form-control" })
+        <hr />
+        <button type="submit" class="btn btn-dark" id="btserver" name="btserver">Click Server</button>
+        <button type="button" class="btn btn-danger" id="btjavascript" name="btjavascript">Click JavaScript</button>
+        <button type="button" class="btn btn-success" id="btfetch" name="btfetch">Click Fetch</button>
+    }
+</div>
