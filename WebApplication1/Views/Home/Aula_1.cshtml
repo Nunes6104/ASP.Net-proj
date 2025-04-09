@@ -23,10 +23,44 @@
         <label>Num: </label>
         @Html.TextBox("txtnum", "", new { @class = "form-control" })
         <label>Resultado: </label>
-        @Html.TextBox("txtdobro", ViewBag.dobro as String, new { @class = "form-control" })
+        <input type="text" id="txtrslt" name="txtrslt" class="form-control" value="@ViewBag.dobro" />
         <hr />
         <button type="submit" class="btn btn-dark" id="btserver" name="btserver">Click Server</button>
         <button type="button" class="btn btn-danger" id="btjavascript" name="btjavascript">Click JavaScript</button>
         <button type="button" class="btn btn-success" id="btfetch" name="btfetch">Click Fetch</button>
+
+    }
+
+    @section istec{
+        <style>
+
+        </style>
+        <script>
+            window.onload = function () {
+                let txtnum = document.getElementById("txtnum");
+                let txtrslt = document.getElementById("txtrslt");
+                let btjavascript = document.getElementById("btjavascript");
+
+                btjavascript.addEventListener("click", (evt) => {
+                    evt = evt ? evt : window.event;
+                    evt.preventDefault();
+                    txtrslt.value = parseInt(txtnum.value) * 2;
+                });
+
+                let btfetch = document.getElementById("btfetch");
+                btfetch.addEventListener("click", (evt) => {
+                    urldata = new URLSearchParams();
+                    urldata.append("num", txtnum.value);
+                    fetch('@Url.Action("/Dobro")', {
+                        method: 'post',
+                        body: urldata
+                    }).then(response => response.json())
+                        .then(dobro => {
+                            console.log(dobro);
+                            txtrslt.value = dobro.Dobro;
+                        }).catch(erro => { console.error(erro) });
+                });
+            };
+        </script>
     }
 </div>

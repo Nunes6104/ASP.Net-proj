@@ -20,6 +20,9 @@
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Aula 1", "Aula_1", "Home", null, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Alunos", "Alunos", "Home", null, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Create Aluno", "CreateAluno", "Home", null, new { @class = "nav-link" })</li>
                 </ul>
             </div>
         </div>
@@ -34,6 +37,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("istec", required: false)
     @RenderSection("scripts", required: false)
 </body>
 </html>
