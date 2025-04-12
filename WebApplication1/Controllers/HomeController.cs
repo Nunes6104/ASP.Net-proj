@@ -26,19 +26,19 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult EditAluno(Aluno editado)
         {
-            BD bd = new BD();
-            Aluno aluno = bd.GetAlunos().Where(x => x.Num == editado.Num).FirstOrDefault();
-            if (aluno != null)
-            {
-                aluno.Nome = editado.Nome;
-                aluno.Turma = editado.Turma;
-                bd.gravar();
-                return RedirectToAction("Alunos", new { message = "Alterado com sucesso" });
-            }
-            else
-            {
-                return RedirectToAction("Alunos", new { message = "Num não existe" });
-            }
+                BD bd = new BD();
+                Aluno aluno = bd.GetAlunos().Where(x => x.Num == editado.Num).FirstOrDefault();
+                if (aluno != null)
+                {
+                    aluno.Nome = editado.Nome;
+                    aluno.Turma = editado.Turma;
+                    bd.gravar();
+                    return RedirectToAction("Alunos", new { message = "Alterado com sucesso" });
+                }
+                else
+                {
+                    return RedirectToAction("Alunos", new { message = "Num não existe" });
+                }
         }
 
         public ActionResult DeleteAluno(int ? num)
@@ -126,6 +126,17 @@ namespace WebApplication1.Controllers
             BD bd = new BD();
             List<Aluno> alunos = bd.GetAlunos();
             return View(alunos);
+        }
+
+        public ActionResult Exames(int ? num)
+        {
+            BD bd = new BD();
+            List<Exam> exames = bd.GetExames();
+            if (num != null)
+            {
+                exames = exames.Where(x => x.Num == (num ?? -1)).ToList<Exam>();
+            }
+            return PartialView(exames);
         }
 
         public ActionResult Dobro(int ? num)

@@ -125,6 +125,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\NumUnico.cs" />
     <Compile Include="Models\Turma.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -186,6 +187,7 @@
     <Content Include="Views\Home\EditAluno.cshtml" />
     <Content Include="Views\Home\DeleteAluno.cshtml" />
     <Content Include="Views\Home\DetailsAluno.cshtml" />
+    <Content Include="Views\Home\Exames.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

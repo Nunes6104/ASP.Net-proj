@@ -10,9 +10,11 @@ namespace WebApplication1.Models
 {
 	public class Aluno
 	{
-        [Key]
+        [NumUnico(ErrorMessage = "Já existe esse aluno")]
         public int Num { get; set; }
+
         [MinLength(4,ErrorMessage ="Tamanho minimo de 4 caracteres")]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Só letras")]
         public string Nome { get; set; }
         public string Turma { get; set; }
     }
@@ -58,20 +60,24 @@ namespace WebApplication1.Models
 
         public BD()
         {
-            //alunos = new List<Aluno>
-            //{
-            //    new Aluno {Num =1, Nome="João", Turma="A" },
-            //    new Aluno {Num =2, Nome="Mira", Turma="A" },
-            //    new Aluno {Num =3, Nome="Leandro", Turma="B" },
-            //    new Aluno {Num =4, Nome="Francisco", Turma="A" },
-            //    new Aluno {Num =1, Nome="Diogo", Turma="B" }
-            //};
             carregar();
+            exames = new List<Exam>()
+            {
+                new Exam() { Num = 1, Disciplina = "Programação II", Nota = 10 },
+                new Exam() { Num = 2, Disciplina = "TI II", Nota = 16 },
+                new Exam() { Num = 1, Disciplina = "Redes", Nota = 15 },
+                new Exam() { Num = 1, Disciplina = "Historia", Nota = 10 },
+                new Exam() { Num = 2, Disciplina = "Ciencia de Dados", Nota = 10 }
+            };
         }
 
         public List<Aluno> GetAlunos()
         {
             return alunos;
+        }
+        public List<Exam> GetExames()
+        {
+            return exames;
         }
     }
 }

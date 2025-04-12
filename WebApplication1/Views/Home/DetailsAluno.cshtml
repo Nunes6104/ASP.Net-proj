@@ -34,7 +34,14 @@
         <dd>
             @Html.DisplayFor(model => model.Turma)
         </dd>
-
+    </dl>
+    <h3>Exames do Aluno</h3>
+    <dl class="dl-horizontal">
+        <dd>
+            @{
+                Html.RenderAction("Exames", new { num = Model.Num });
+            }
+        </dd>
     </dl>
 </div>
 <p>
