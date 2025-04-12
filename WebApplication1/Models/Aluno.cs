@@ -4,12 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Runtime.Serialization.Json;
 using System.IO;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebApplication1.Models
 {
 	public class Aluno
 	{
+        [Key]
         public int Num { get; set; }
+        [MinLength(4,ErrorMessage ="Tamanho minimo de 4 caracteres")]
         public string Nome { get; set; }
         public string Turma { get; set; }
     }

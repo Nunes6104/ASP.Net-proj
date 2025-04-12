@@ -74,16 +74,37 @@ namespace WebApplication1.Controllers
 
         public ActionResult CreateAluno()
         {
+            List<Turma> turmas = new List<Turma>() 
+            {
+                new Turma() { clsTurma = "A" },
+                new Turma() { clsTurma = "B" },
+                new Turma() { clsTurma = "C" },
+                new Turma()  {clsTurma = "D" }
+            };
+            ViewBag.turmas = new SelectList(turmas, "clsTurma", "clsTurma");
             Aluno aluno = new Aluno();
             return View(aluno);
         }
         [HttpPost]
         public ActionResult CreateAluno(Aluno novo)
         {
-            BD bd = new BD();
-            bd.GetAlunos().Add(novo);
-            bd.gravar();
-            return RedirectToAction("Alunos", new { message = "Registo Inserido com sucesso" });
+            List<Turma> turmas = new List<Turma>()
+            {
+                new Turma() { clsTurma = "A" },
+                new Turma() { clsTurma = "B" },
+                new Turma() { clsTurma = "C" },
+                new Turma()  {clsTurma = "D" }
+            };
+            ViewBag.turmas = new SelectList(turmas, "clsTurma", "clsTurma");
+
+            if (ModelState.IsValid)
+            {
+                BD bd = new BD();
+                bd.GetAlunos().Add(novo);
+                bd.gravar();
+                return RedirectToAction("Alunos", new { message = "Registo Inserido com sucesso" });
+            }
+            else return View(novo);
         }
 
         public ActionResult DetailsAluno(int? num)
